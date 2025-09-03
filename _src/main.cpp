@@ -7,27 +7,27 @@ class Memory
     uint16_t mem[MAX_MEMORY]{};
 };
 
+// clang-format off
 enum class ERegisters : uint8_t
 {
-    R_R0,
-    R_R1,
-    R_R2,
-    R_R3,
-    R_R4,
-    R_R5,
-    R_R6,
-    R_R7,
-    R_PC // program counter
-    ,
-    R_COND // condition flags
+    R0
+    , R1
+    , R2
+    , R3
+    , R4
+    , R5
+    , R6
+    , R7
+    , PC // program counter
+    , COND // condition flags
 
-    ,
-    R_COUNT
+    , ALL
 };
+// clang-format on
 
 class Registers
 {
-    constexpr static size_t R_COUNT = static_cast<size_t>(ERegisters::R_COUNT);
+    constexpr static size_t R_COUNT = static_cast<size_t>(ERegisters::ALL);
     uint16_t reg[R_COUNT]{};
 };
 
