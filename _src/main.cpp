@@ -1,28 +1,46 @@
 #include "__preprocessor__.h"
+#include <bitset>
 
-class test
+class Memory
 {
-    int tab[100];
+    constexpr static size_t MAX_MEMORY = ((uint16_t)(~0)); // 0xffff
+    uint16_t mem[MAX_MEMORY]{};
 };
+
+enum class ERegisters : uint8_t
+{
+    R_R0,
+    R_R1,
+    R_R2,
+    R_R3,
+    R_R4,
+    R_R5,
+    R_R6,
+    R_R7,
+    R_PC // program counter
+    ,
+    R_COND // condition flags
+
+    ,
+    R_COUNT
+};
+
+class Registers
+{
+    constexpr static size_t R_COUNT = static_cast<size_t>(ERegisters::R_COUNT);
+    uint16_t reg[R_COUNT]{};
+};
+
+class lc3Computer
+{
+};
+
+#define bits(x) cout << std::dec << #x << " = " << x << " / 0x" << std::hex << x << " / 0b" << std::bitset<sizeof(x) * 8>(x) << std::dec << "\n";
 
 #ifdef BUILD_EXECUTABLE
 int main(int argc, char* argv[])
 {
     srand(time(NULL));
-    // CORE::clear_terminal(); // tests will NOT be VISIBLE with this line
-    time_stamp("It just works");
-
-    CORE::str::split_string("Hello World!", ' ');
-    var(CORE::str::to_lower_case("Hello, World!"));
-
-    show_sizeof(test);
-    show_sizeof_many(test, 100);
-
-    int num = 123456789;
-    double num2 = 1234567.89123;
-
-    cout << CORE::format_number(num) << endl;
-    cout << CORE::format_number(num2) << endl;
 
     return 0;
 }
